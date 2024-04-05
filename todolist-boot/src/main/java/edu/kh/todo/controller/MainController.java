@@ -22,7 +22,7 @@ public class MainController {
 	@RequestMapping("/") 
 	public String mainPage(Model model) {
 		
-		// 의존성 주입(DI) 확인 (진짜 Service 객체 들어옴)ㅐ
+		// 의존성 주입(DI) 확인 (진짜 Service 객체 들어옴)
 		log.debug("service : " + service); 
 		
 		// Service 메서드 호출 후 결과 반환 받기 

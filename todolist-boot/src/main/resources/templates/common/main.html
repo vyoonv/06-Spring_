@@ -39,7 +39,9 @@
                 <tr th:each="todo : ${todoList}" th:object="${todo}">
                     <td th:text="*{todoNo}">할 일 번호</td>
                     <td>
-                        <a th:text="*{todoTitle}">할 일 제목</a>
+                        <!-- 위에서 th:object 설정해놔서 *{}로 불러오기-->
+                        <a th:href="@{/todo/detail(todoNo=*{todoNo})}" 
+                        th:text="*{todoTitle}">할 일 제목</a>
                     </td>
                     <td th:text="*{complete}">완료 여부(Y/N)</td>
 
