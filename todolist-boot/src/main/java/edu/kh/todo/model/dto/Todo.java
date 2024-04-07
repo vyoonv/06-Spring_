@@ -17,7 +17,7 @@ public class Todo {
 	private String todoTitle;  // 제목
 	private String todoContent;  // 내용
 	private String complete; // 완료 여부
-	private String regDate;  // 등록일 (Sting으로 변환) 
+	private String regDate;  // 등록일 (String으로 변환) 
 	
 	
 	
