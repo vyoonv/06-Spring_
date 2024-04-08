@@ -298,14 +298,19 @@ deleteBtn.addEventListener("click", ()=> {
 // -------------------------------------------------------------------
 
 // 완료 여부 변경 버튼 클릭시 
-changeComplete.addEventListener("click", (e)=> {
+changeComplete.addEventListener("click", () => {
+    const todoNo = popupTodoNo.innerText; 
+    const complete = popupComplete.innerText;  
+    complete = (complete === 'Y') ? 'N' : 'Y';
 
-    const todoNo = popupTodoNo.innerText;
-
-    fetch("/ajax/changeComplete")
+    fetch("/ajax/changeComplete", {
+        method : "PUT", 
+        headers : {"Content-type" : "application/json"}, 
+        body : todoNo
+    })
     .then(resp => resp.text())
     .then(result => {
-        changeComplete.innerText = result; 
+        popupComplete.innerText = result; 
     })
 
 
