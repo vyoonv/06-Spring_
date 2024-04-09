@@ -99,7 +99,7 @@ public class AjaxController {
 	}
 	
 	
-	// 
+	// Todo 추가  
 	@ResponseBody   // 비동기 요청 결과로 값 자체를 반환 
 	@PostMapping("add")
 	public int addTodo(
@@ -116,6 +116,7 @@ public class AjaxController {
 	}
 	
 	
+	// 목록 조회 
 	@ResponseBody
 	@GetMapping("selectList")
 	public List<Todo> selectList() {
@@ -133,7 +134,7 @@ public class AjaxController {
 		
 	}
 	
-	
+	// 상세 조회 
 	@ResponseBody
 	@GetMapping("detail")
 	public Todo selectTodo(@RequestParam("todoNo") int todoNo) {
@@ -144,7 +145,7 @@ public class AjaxController {
 		
 	}
 	
-	
+	// 할 일 삭제 
 	@ResponseBody
 	@DeleteMapping("delete")   // delete 방식 요청 처리 (비동기 요청만 가능) (delete/put 비동기만 가능) 
 	public int todoDelete(@RequestBody int todoNo) {
@@ -155,7 +156,7 @@ public class AjaxController {
 	}
 	
 	
-	
+	// 완료 여부 변경 
 	@ResponseBody
 	@PutMapping("changeComplete")
 	public int changeComplete(@RequestBody Todo todo) {
@@ -164,7 +165,14 @@ public class AjaxController {
 	}
 	
 	
-	
+	// 할 일 수정
+	@ResponseBody
+	@PutMapping("update")
+	public int todoUpdate(@RequestBody Todo todo) {
+		
+		return service.todoUpdate(todo); 
+		
+	}
 	
 	
 	
