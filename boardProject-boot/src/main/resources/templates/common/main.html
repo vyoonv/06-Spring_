@@ -24,6 +24,10 @@
       <section class="content-2">
         <!-- 로그인, 회원가입 버튼 -->
 
+
+        <!-- 로그인이 되어있지 않은 경우 -->
+        <th:block th:if="${session.loginMember == null}">
+
           <!-- 로그인 박스 -->
           <form action="/member/login" method="POST" id="loginForm">
             <fieldset class="id-pw-area">
@@ -60,6 +64,42 @@
             </article>
   
           </form>
+       
+        </th:block>
+
+        <!-- 로그인 되었을 때-->
+        <!-- <th:block th:unless="${session.loginMember == null}"></th:block> -->
+        <th:block th:if="${session.loginMember != null}">
+          <article class="login-area">
+            <a href="/mypage/profile">
+              <!--프로필 이미지 -->
+              
+              <!-- messages.properties에 작성된 기본 사용자 이미지 세팅 -->
+              <img th:with="user=#{user.default.image}"
+                   th:src="${session.loginMember.profileImg ?: user}"
+                   id="memberProfile" alt="프로필 이미지">
+              <!-- th:with : 변수 생성 // 프로필 이미지가 등록됐다면 쓰고 아니면 user 
+                   alt : 이미지를 보여줄 수 없을 때 대체할 텍스트 -->
+            </a>
+
+            <!-- 닉네임, 이메일, 로그아웃 버튼 영역 -->
+            <div class="my-info" th:object="${session.loginMember}">
+              <div>
+                  <a href="/mypage/info" id="nickname" th:text="*{memberNickname}">닉네임</a>
+                  <a href="/member/logout" id="logoutBtn">로그아웃</a>
+              </div>
+
+              <p th:text="*{memberEmail}">이메일</p>
+
+            </div>
+
+          </article>
+        </th:block>
+
+
+
+       
+       
 
       </section>
 
