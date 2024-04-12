@@ -1,5 +1,7 @@
 package edu.kh.project.email.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,11 +32,28 @@ public class EmailController {
 		
 		String authKey = service.sendEmail("signup", email); 
 		
+		if(authKey != null) { // 인증번호 반환되어 돌아왔다면 // 이메일 보내는 것 성공시 
+			
+			return 1; 
+		}
+		
+		//이메일 보내기 실패 
 		return 0; 
 	}
 	
 	
-	
+	@ResponseBody
+	@PostMapping("checkAuthKey")
+	public int checkAuthKey(@RequestBody Map<String, Object> map) {
+							// email, authKey 둘 다 받을 수 있는 dto가 없으니 map으로 전달 	
+
+		// 입력 받은 이메일, 인증번호가 DB에 있는지 조회 
+		// 이메일이 있고 인증번호 일치 == 1 반환 
+		// 아니면 0 반환 
+		
+		return service.checkAuthKey(map); 
+		
+	}
 	
 	
 	
