@@ -56,11 +56,11 @@ public class MemberController {
 	 * @return "redirect:/"
 	 */
 	@PostMapping("login")
-	public String login(Member inputMember, 
-						RedirectAttributes ra, 	
-						Model model, 
-						@RequestParam(value="saveId", required = false) String saveId, 
-						HttpServletResponse resp     ) {
+	public String login(	Member inputMember, 
+							RedirectAttributes ra, 	
+							Model model, 
+							@RequestParam(value="saveId", required = false) String saveId, 
+							HttpServletResponse resp     ) {
 		
 		
 		
@@ -174,8 +174,9 @@ public class MemberController {
 	 * @return
 	 */
 	@PostMapping("signup")
-	public String signup(Member inputMember, @RequestParam("memberAddress") String[] memberAddress, 
-						RedirectAttributes ra) {
+	public String signup(	Member inputMember, 
+							@RequestParam("memberAddress") String[] memberAddress, 
+							RedirectAttributes ra ) {
 		
 		// 회원 가입 서비스 호출
 		int result = service.signup(inputMember, memberAddress);
