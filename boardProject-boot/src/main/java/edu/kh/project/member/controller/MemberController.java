@@ -1,7 +1,6 @@
 package edu.kh.project.member.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,12 +16,13 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import edu.kh.project.email.model.service.EmailService;
 import edu.kh.project.member.model.dto.Member;
 import edu.kh.project.member.model.service.MemberService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import oracle.jdbc.proxy.annotation.Post;
 
 
 /* @SessionAttributes({"key", "key"...}) 
@@ -35,12 +35,13 @@ import oracle.jdbc.proxy.annotation.Post;
 
 @SessionAttributes({"loginMember"})
 @Controller
+@RequiredArgsConstructor 
 @Slf4j
 @RequestMapping("member")
 public class MemberController {
 
-	@Autowired  // 의존성 주입 (DI)
-	private MemberService service; 
+	 // 의존성 주입 (DI)
+	private final MemberService service; 
 	
 	
 	/* [로그인]

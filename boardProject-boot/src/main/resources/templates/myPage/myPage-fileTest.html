@@ -52,6 +52,18 @@
 
 
         </pre>
+		
+		<form action="/myPage/file/test1"
+			  method="post" 
+			  enctype="multipart/form-data"
+			>
+			<h3>업로드 테스트 1</h3>
+			
+			<!-- type="file" 도 결국에는 parameter -> @RequestParam으로 처리 가능 -->
+			<input type="file" name="uploadFile">
+			
+			<button class="myPage-submit">제출하기</button>
+		</form>
 
      	
         
