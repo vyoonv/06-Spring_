@@ -58,7 +58,19 @@
 </insert>
 
 
+<!-- 회원 목록 조회 -->
+<select id="selectMemberList">
+	SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_NICKNAME, MEMBER_DEL_FL
+	FROM "MEMBER"
+	ORDER BY MEMBER_NO
+</select>
 
+<!-- 특정 회원 비밀번호 초기화 -->
+<update id="resetPw">
+	UPDATE "MEMBER" SET
+	MEMBER_PW = #{encPw}
+	WHERE MEMBER_NO = #{inputNo}
+</update>
 
 
 

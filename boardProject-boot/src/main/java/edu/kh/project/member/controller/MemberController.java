@@ -1,10 +1,15 @@
 package edu.kh.project.member.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -114,7 +119,29 @@ public class MemberController {
 		return "redirect:/"; // 메인페이지 재요청 
 		
 	}
+
 	
+	@GetMapping("quickLogin")
+	public String quickLogin(	@RequestParam("memberEmail") String memberEmail,
+								Model model, 
+								RedirectAttributes ra	) {
+		
+		Member loginMember = service.quickLogin(memberEmail); 
+		
+		if( loginMember == null ) {
+			
+			ra.addFlashAttribute("message", "해당 이메일이 존재하지 않습니다"); 
+			
+		} else {
+			
+			model.addAttribute("loginMember", loginMember); 
+		}
+		
+		
+		return "redirect:/"; 
+	}
+	
+
 	
 	/** 로그아웃 Session에 저장된 로그인된 회원 정보를 없앰(만료, 무효화)
 	 * @param SessionStatus : 세션을 완료(없앰) 시키는 역할의 객체 
@@ -202,7 +229,32 @@ public class MemberController {
 	}
 	
 	
+	/** 회원 목록 조회 
+	 * @return
+	 */
+	@ResponseBody
+	@GetMapping("selectMemberList")
+	public List<Member> selectMemberList() {
+		
+		List<Member> memberList = service.selectMemberList(); 
+		
+		return memberList; 
+		
+	}
 	
+	/** 비밀번호 초기화 
+	 * @param memberNo
+	 * @param member
+	 * @param ra
+	 * @return 
+	 */
+	@ResponseBody
+	@PutMapping("resetPw")
+	public int resetPw(@RequestBody int inputNo ) {
+
+		return service.resetPw(inputNo); 
+		
+	}
 	
 	
 	
