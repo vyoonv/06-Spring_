@@ -65,6 +65,10 @@
 			<button class="myPage-submit">제출하기</button>
 		</form>
 
+		<a th:if="${path != null}"
+		   th:text="${path}"	 
+		   th:href="${path}"	 
+		download>업로드한 파일</a>
      	
         
 

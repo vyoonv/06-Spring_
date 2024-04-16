@@ -244,9 +244,17 @@ public class MyPageController {
 	 */
 	@PostMapping("file/test1")
 	public String fileUpload1(
-				@RequestParam("uploadFile") MultipartFile uploadFile
-																	) {
+				@RequestParam("uploadFile") MultipartFile uploadFile,
+				RedirectAttributes ra		) throws Exception {
 		
+		String path = service.fileUpload1(uploadFile); 
+		
+		// 파일이 저장되어 웹에서 접근할 수 있는 경로가 반환되었을 
+		if(path != null) {
+			ra.addFlashAttribute("path", path); 
+		}
+		
+		return "redirect:/myPage/fileTest"; 
 	}
 
 	
