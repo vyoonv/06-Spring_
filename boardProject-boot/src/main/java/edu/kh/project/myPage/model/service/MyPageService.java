@@ -33,7 +33,7 @@ public interface MyPageService {
 	 * @param uploadFile
 	 * @return
 	 */
-	String fileUpload1(MultipartFile uploadFile);
+	String fileUpload1(MultipartFile uploadFile) throws Exception;
 
 	
 	
